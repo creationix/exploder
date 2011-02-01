@@ -16,8 +16,9 @@ function Engine(containerId, setup) {
   }
 
   Sprite.prototype.renderDiv = function () {
-    var div = document.createElement('div');
-    div.setAttribute('class', this.img);
+    var div = document.createElement('img');
+    div.setAttribute('src', this.img + ".png");
+//    div.setAttribute('class', this.img);
     return div;
   };
 
