@@ -3,7 +3,7 @@
 Engine('sprites', function (engine) {
   var Sprite = engine.Sprite;
   var colors = ['green', 'blue', 'brown', 'white', 'yellow', 'orange',
-                'purple', 'red', 'grey'];
+                'purple', 'red', 'gray'];
   // Grid used for quick collision detection
   var ballGrid = {};
 
