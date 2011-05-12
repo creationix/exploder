@@ -105,9 +105,9 @@ function Engine(containerId, setup) {
     container = document.getElementById(containerId);
     // Start the animation loop
     var old = Date.now();
-    setInterval(function () {
-      var now = Date.now(),
-          delta = now - old;
+    function frame(now) {
+      webkitRequestAnimationFrame(frame);
+      var delta = now - old;
       engine.emit('animate', delta);
       sprites.forEach(function (sprite) {
         sprite.animate(delta);
@@ -116,7 +116,8 @@ function Engine(containerId, setup) {
         sprite.update();
       });
       old = now;
-    }, 33);
+    }
+    webkitRequestAnimationFrame(frame);
 
     // Listen for mouse and touch events
     var element = document.body;

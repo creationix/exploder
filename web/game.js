@@ -3,7 +3,7 @@
 Engine('sprites', function (engine) {
   var Sprite = engine.Sprite;
   var colors = ['green', 'blue', 'brown', 'white', 'yellow', 'orange',
-                'purple', 'red', 'gray'];
+                'purple', 'red', 'grey'];
   // Grid used for quick collision detection
   var ballGrid = {};
 
@@ -184,7 +184,6 @@ Engine('sprites', function (engine) {
       (new Spark(evt.clientX - 24, evt.clientY - 24, i)).show();
     }
   }
-  var fpsDiv = document.getElementById('fps');
   engine.on('animate', function (delta) {
     if (!engine.sprites.length) {
       explode({
@@ -192,7 +191,6 @@ Engine('sprites', function (engine) {
         clientY: height / 2 + 24
       });
     }
-    fpsDiv.innerText = (Math.floor(1000 / delta) / 1) + " fps";
     if (fire) {
       explode(fire);
       fire = false;
