@@ -179,8 +179,8 @@ Engine('sprites', function (engine) {
   });
 
   function explode(evt) {
-    start = (start + 19) % 48;
-    for (var i = start; i < 360; i += 48) {
+    start = (start + 3) % 38;
+    for (var i = start; i < 360; i += 38) {
       (new Spark(evt.clientX - 24, evt.clientY - 24, i)).show();
     }
   }

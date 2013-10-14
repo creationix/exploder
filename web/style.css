@@ -11,10 +11,20 @@ html, body {
   overflow: hidden;
 }
 
-#sprites img {
+#sprites div {
   position: absolute;
   width: 48px;
   height: 48px;
+  background-image: url(sprites.png);
 }
 
-
+#sprites .dart { background-position: 0px 0px; }
+#sprites .white { background-position: 48px 0px; }
+#sprites .brown { background-position: 96px 0px; }
+#sprites .blue { background-position: 144px 0px; }
+#sprites .green { background-position: 192px 0px; }
+#sprites .yellow { background-position: 0px 48px; }
+#sprites .grey { background-position: 48px 48px; }
+#sprites .red { background-position: 96px 48px; }
+#sprites .purple { background-position: 144px 48px; }
+#sprites .orange { background-position: 192px 48px; }

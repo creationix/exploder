@@ -16,9 +16,8 @@ function Engine(containerId, setup) {
   }
 
   Sprite.prototype.renderDiv = function () {
-    var div = document.createElement('img');
-    div.setAttribute('src', this.img + ".png");
-//    div.setAttribute('class', this.img);
+    var div = document.createElement('div');
+    div.setAttribute('class', this.img);
     return div;
   };
 
@@ -51,6 +50,7 @@ function Engine(containerId, setup) {
     this.ox = this.x;
     this.oy = this.y;
     this.or = this.r;
+    this.div.style.transform = transform;
     this.div.style.webkitTransform = transform;
   };
 
@@ -106,7 +106,7 @@ function Engine(containerId, setup) {
     // Start the animation loop
     var old = Date.now();
     function frame(now) {
-      webkitRequestAnimationFrame(frame);
+      requestAnimationFrame(frame);
       var delta = now - old;
       engine.emit('animate', delta);
       sprites.forEach(function (sprite) {
@@ -117,7 +117,7 @@ function Engine(containerId, setup) {
       });
       old = now;
     }
-    webkitRequestAnimationFrame(frame);
+    requestAnimationFrame(frame);
 
     // Listen for mouse and touch events
     var element = document.body;
