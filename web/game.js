@@ -10,8 +10,8 @@ Engine('sprites', function (engine) {
   // Watch the height of the window.
   var width, height;
   function onResize() {
-    width = document.width - 48;
-    height = document.height - 48;
+    width = window.innerWidth - 48;
+    height = window.innerHeight - 48;
   }
   onResize();
 
@@ -34,7 +34,7 @@ Engine('sprites', function (engine) {
   };
   Sprite.adopt(Igniter);
 
-    
+
 
   function Spark(x, y, angle) {
     Sprite.call(this, x, y, angle, 'dart');
