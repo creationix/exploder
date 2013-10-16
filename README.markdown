@@ -8,4 +8,4 @@ The first type is the circles.  They are created at page load and bounce off the
 
 The second type is the sparks. They fly faster and die after either a specified timeout or fly off the screen.
 
-The bounding box is the entire window and is dynamic.
+The bounding box is the entire window.
