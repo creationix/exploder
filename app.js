@@ -23,8 +23,8 @@ document.body.appendChild(renderer.view);
 
 var balls = [];
 var sparks = [];
-var down = false, start = 0, before;
-var sx, sy;
+var sources = {};
+var start = 0, before;
 
 function onAssetsLoaded() {
 
@@ -80,8 +80,9 @@ function animate() {
   var delta = Math.min(33, now - before);
   before = now;
 
-  if (down) {
-    explode(sx, sy);
+  for (var key in sources) {
+    var source = sources[key];
+    explode(source.x, source.y);
   }
 
   for (i = balls.length - 1; i >= 0; --i) {
@@ -174,52 +175,51 @@ function animateBall(index, delta) {
 function listen() {
   // Listen for mouse and touch events
   var element = document.body;
-  element.addEventListener('mousedown', onDown, true);
-  element.addEventListener('mousemove', onMove, true);
-  element.addEventListener('mouseup', onUp, true);
+  element.addEventListener('mousedown', function (e) {
+    e.preventDefault();
+    onDown("mouse", e.clientX, e.clientY);
+  }, true);
+  element.addEventListener('mousemove', function (e) {
+    e.preventDefault();
+    onMove("mouse", e.clientX, e.clientY);
+  }, true);
+  element.addEventListener('mouseup', function (e) {
+    e.preventDefault();
+    onUp("mouse", e.clientX, e.clientY);
+  }, true);
   element.addEventListener('touchstart', function (e) {
-    var touch = e.touches[0];
-    touch.stopPropagation = function () {
-      e.stopPropagation();
-    };
-    touch.preventDefault = function () {
-      e.preventDefault();
-    };
-    onDown(touch);
+    e.preventDefault();
+    var touch = e.changedTouches[0];
+    onDown(touch.identifier, touch.clientX, touch.clientY);
   }, true);
   element.addEventListener('touchmove', function (e) {
-    var touch = e.touches[0];
-    touch.stopPropagation = function () {
-      e.stopPropagation();
-    };
-    touch.preventDefault = function () {
-      e.preventDefault();
-    };
-    onMove(touch);
+    e.preventDefault();
+    var touch = e.changedTouches[0];
+    onMove(touch.identifier, touch.clientX, touch.clientY);
   }, true);
-  element.addEventListener('touchend', onUp, true);
+  element.addEventListener('touchend', function (e) {
+    e.preventDefault();
+    var touch = e.changedTouches[0];
+    onUp(touch.identifier);
+  }, true);
 }
 
-function onDown(evt) {
-  evt.stopPropagation();
-  evt.preventDefault();
-  down = true;
-  sx = evt.clientX;
-  sy = evt.clientY;
+function onDown(key, x, y) {
+  sources[key] = {
+    x: x,
+    y: y
+  };
 }
 
-function onUp(evt) {
-  evt.stopPropagation();
-  evt.preventDefault();
-  down = false;
+function onUp(key) {
+  delete sources[key];
 }
 
-function onMove(evt) {
-  if (!down) return;
-  evt.stopPropagation();
-  evt.preventDefault();
-  sx = evt.clientX;
-  sy = evt.clientY;
+function onMove(key, x, y) {
+  if (sources[key]) {
+    sources[key].x = x;
+    sources[key].y = y;
+  }
 }
 
 }, false);
