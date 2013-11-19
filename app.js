@@ -165,9 +165,8 @@ function animateBall(index, delta) {
   if (bounced) {
     // explode(this.position.x, this.position.y, this);
     if (this.mx * this.mx + this.my * this.my > 6) {
-      this.mx *= 0.5;
-      this.my *= 0.5;
-      this.explode = 30;
+      var velocity = Math.sqrt(this.mx * this.mx + this.my * this.my);
+      this.explode = Math.floor(velocity + 1) * 10;
     }
   }
 }
