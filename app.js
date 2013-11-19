@@ -30,19 +30,25 @@ function onAssetsLoaded() {
 
   // Create a few balls on the screen
   var x = 0;
-  for (var i = 1; i < 360; i += 12) {
-    var rad = i * Math.PI / 180;
-		var colorName = colors[x++ % colors.length];
-		var ball = PIXI.Sprite.fromFrame(colorName);
-		ball.position.x = (width / 2 + Math.sin(rad) * 100)|0;
-		ball.position.y = (height / 2 - Math.cos(rad) * 100)|0;
-		ball.anchor.x = 0.5;
-		ball.anchor.y = 0.5;
-		ball.mx = 0;
-		ball.my = 0;
-		ball.animate = animateBall;
-		balls.push(ball);
-		stage.addChild(ball);
+  var rad = 0;
+  var r = Math.min(window.innerHeight, window.innerWidth) / 4;
+  while (r >= 24) {
+    var c = Math.PI * r * 2;
+    var count = c / 48;
+    var step = Math.PI * 2 / count;
+    r -= 48 / count;
+    rad += step;
+    var colorName = colors[x++ % colors.length];
+    var ball = PIXI.Sprite.fromFrame(colorName);
+    ball.position.x = (width / 2 + Math.sin(rad) * r)|0;
+    ball.position.y = (height / 2 - Math.cos(rad) * r)|0;
+    ball.anchor.x = 0.5;
+    ball.anchor.y = 0.5;
+    ball.mx = 0;
+    ball.my = 0;
+    ball.animate = animateBall;
+    balls.push(ball);
+    stage.addChild(ball);
   }
 
   // Add input listeners
@@ -166,6 +172,8 @@ function animateBall(index, delta) {
     // explode(this.position.x, this.position.y, this);
     if (this.mx * this.mx + this.my * this.my > 6) {
       var velocity = Math.sqrt(this.mx * this.mx + this.my * this.my);
+      this.mx *= 0.99 + Math.random() - 0.5;
+      this.my *= 0.99 + Math.random() - 0.5;
       this.explode = Math.floor(velocity + 1) * 10;
     }
   }
