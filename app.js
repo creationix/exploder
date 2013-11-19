@@ -189,18 +189,24 @@ function listen() {
   }, true);
   element.addEventListener('touchstart', function (e) {
     e.preventDefault();
-    var touch = e.changedTouches[0];
-    onDown(touch.identifier, touch.clientX, touch.clientY);
+    for (var i = 0, l = e.changedTouches.length; i < l; i++) {
+      var touch = e.changedTouches[i];
+      onDown(touch.identifier, touch.clientX, touch.clientY);
+    }
   }, true);
   element.addEventListener('touchmove', function (e) {
     e.preventDefault();
-    var touch = e.changedTouches[0];
-    onMove(touch.identifier, touch.clientX, touch.clientY);
+    for (var i = 0, l = e.changedTouches.length; i < l; i++) {
+      var touch = e.changedTouches[i];
+      onMove(touch.identifier, touch.clientX, touch.clientY);
+    }
   }, true);
   element.addEventListener('touchend', function (e) {
     e.preventDefault();
-    var touch = e.changedTouches[0];
-    onUp(touch.identifier);
+    for (var i = 0, l = e.changedTouches.length; i < l; i++) {
+      var touch = e.changedTouches[i];
+      onUp(touch.identifier);
+    }
   }, true);
 }
 
