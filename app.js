@@ -2,6 +2,12 @@
 
 window.addEventListener('load', function () {
 
+  window.applicationCache.addEventListener('updateready', function() {
+    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+        window.location.reload();
+    }
+  }, false);
+
 var width = window.innerWidth;
 var height = window.innerHeight;
 var colors = ['green', 'blue', 'brown', 'white', 'yellow', 'orange', 'purple',
@@ -182,39 +188,56 @@ function animateBall(index, delta) {
 function listen() {
   // Listen for mouse and touch events
   var element = document.body;
-  element.addEventListener('mousedown', function (e) {
-    e.preventDefault();
-    onDown("mouse", e.clientX, e.clientY);
-  }, true);
-  element.addEventListener('mousemove', function (e) {
-    e.preventDefault();
-    onMove("mouse", e.clientX, e.clientY);
-  }, true);
-  element.addEventListener('mouseup', function (e) {
-    e.preventDefault();
-    onUp("mouse", e.clientX, e.clientY);
-  }, true);
-  element.addEventListener('touchstart', function (e) {
-    e.preventDefault();
-    for (var i = 0, l = e.changedTouches.length; i < l; i++) {
-      var touch = e.changedTouches[i];
-      onDown(touch.identifier, touch.clientX, touch.clientY);
-    }
-  }, true);
-  element.addEventListener('touchmove', function (e) {
-    e.preventDefault();
-    for (var i = 0, l = e.changedTouches.length; i < l; i++) {
-      var touch = e.changedTouches[i];
-      onMove(touch.identifier, touch.clientX, touch.clientY);
-    }
-  }, true);
-  element.addEventListener('touchend', function (e) {
-    e.preventDefault();
-    for (var i = 0, l = e.changedTouches.length; i < l; i++) {
-      var touch = e.changedTouches[i];
-      onUp(touch.identifier);
-    }
-  }, true);
+  if (window.PointerEvent) {
+    element.addEventListener('pointerdown', function (e) {
+      e.preventDefault();
+      onDown(e.pointerId, e.clientX, e.clientY);
+    });
+    element.addEventListener('pointermove', function (e) {
+      e.preventDefault();
+      onMove(e.pointerId, e.clientX, e.clientY);
+    });
+    element.addEventListener('pointerup', function (e) {
+      e.preventDefault();
+      onUp(e.pointerId, e.clientX, e.clientY);
+    });
+  }
+  else {
+    element.addEventListener('mousedown', function (e) {
+      e.preventDefault();
+      onDown("mouse", e.clientX, e.clientY);
+    }, true);
+    element.addEventListener('mousemove', function (e) {
+      e.preventDefault();
+      onMove("mouse", e.clientX, e.clientY);
+    }, true);
+    element.addEventListener('mouseup', function (e) {
+      e.preventDefault();
+      onUp("mouse", e.clientX, e.clientY);
+    }, true);
+
+    element.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      for (var i = 0, l = e.changedTouches.length; i < l; i++) {
+        var touch = e.changedTouches[i];
+        onDown(touch.identifier, touch.clientX, touch.clientY);
+      }
+    }, true);
+    element.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      for (var i = 0, l = e.changedTouches.length; i < l; i++) {
+        var touch = e.changedTouches[i];
+        onMove(touch.identifier, touch.clientX, touch.clientY);
+      }
+    }, true);
+    element.addEventListener('touchend', function (e) {
+      e.preventDefault();
+      for (var i = 0, l = e.changedTouches.length; i < l; i++) {
+        var touch = e.changedTouches[i];
+        onUp(touch.identifier);
+      }
+    }, true);
+  }
 }
 
 function onDown(key, x, y) {
