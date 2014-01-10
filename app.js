@@ -37,7 +37,7 @@ function onAssetsLoaded() {
   // Create a few balls on the screen
   var x = 0;
   var rad = 0;
-  var r = Math.min(window.innerHeight, window.innerWidth) / 2;
+  var r = Math.min(window.innerHeight, window.innerWidth) / 2.5;
   while (r >= 24) {
     var c = Math.PI * r * 2;
     var count = c / 48;
