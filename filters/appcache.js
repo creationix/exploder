@@ -1,6 +1,6 @@
-var sha1 = require('sha1');
-var pathJoin = require('path-join');
-var parallel = require('parallel');
+var sha1 = require('./lib/sha1.js');
+var pathJoin = require('./lib/pathjoin.js');
+var parallel = require('./lib/parallel.js');
 
 var mime = "text/cache-manifest";
 
