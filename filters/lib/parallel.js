@@ -7,27 +7,29 @@ module.exports = parallel;
 function parallel(commands, callback) {
   if (!callback) return parallel.bind(this, commands);
   var results, length, left, i, done;
-  
+
   // Handle array shapes
   if (Array.isArray(commands)) {
     left = length = commands.length;
     results = new Array(left);
+    if (!length) return callback(null, results);
     for (i = 0; i < length; i++) {
       run(i, commands[i]);
     }
   }
-  
+
   // Otherwise assume it's an object.
   else {
     var keys = Object.keys(commands);
     left = length = keys.length;
     results = {};
+    if (!length) return callback(null, results);
     for (i = 0; i < length; i++) {
       var key = keys[i];
       run(key, commands[key]);
     }
   }
-  
+
   // Common logic for both
   function run(key, command) {
     command(function (err, result) {
