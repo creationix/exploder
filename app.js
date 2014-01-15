@@ -1,5 +1,9 @@
 /*global PIXI, requestAnimFrame*/
 
+window.addEventListener('resize', function () {
+  window.location.reload();
+}, false);
+
 window.addEventListener('load', function () {
 
   window.applicationCache.addEventListener('updateready', function() {
