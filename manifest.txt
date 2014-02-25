@@ -1,3 +1,4 @@
+index.html
 style.css
 pixi.js
 app.js
