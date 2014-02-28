@@ -19,5 +19,7 @@
   network: ["*"]
 
   -- In case we ever wanted to fallback data when offline
-  fallback: {}
+  fallback: {
+    -- "/": "index.html"
+  }
 }
