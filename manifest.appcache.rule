@@ -12,7 +12,7 @@
     "app.js"
     "sprites.json"
     "sprites.png"
-    "icon.png"
+    "icon-128.png"
   ]
 
   -- Resources that require the user to be online.
