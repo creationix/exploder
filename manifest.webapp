@@ -1,0 +1,13 @@
+{
+  "name": "Exploder",
+  "description": "Explode all the Balls",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/icon-128.png"
+  },
+  "developer": {
+    "name": "Tim Caswell",
+    "url": "https://creationix.com/"
+  },
+  "default_locale": "en"
+}
