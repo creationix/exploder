@@ -1,7 +1,7 @@
 /*global PIXI, requestAnimationFrame*/
 
 window.addEventListener('resize', function () {
-  // window.location.reload();
+  window.location.reload();
 }, false);
 
 window.addEventListener('load', function () {
