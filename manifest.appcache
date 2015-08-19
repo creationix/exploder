@@ -6,7 +6,8 @@ module.exports = function* (load, url) {
   var names = [
     "index.html",
     "style.css",
-    "pixi.js",
+    "pixi.min.js",
+    "pixi.min.js.map",
     "app.js",
     "sprites.json",
     "sprites.png",
