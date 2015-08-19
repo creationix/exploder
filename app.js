@@ -16,8 +16,9 @@ var width = window.innerWidth;
 var height = window.innerHeight;
 var colors = ['green', 'blue', 'brown', 'white', 'yellow', 'orange', 'purple',
               'red', 'grey'];
-var loader = new PIXI.AssetLoader(["sprites.json"]);
-loader.onComplete = onAssetsLoaded;
+var loader = new PIXI.loader;
+loader.add("sprites", "sprites.json")
+loader.once("complete", onAssetsLoaded);
 loader.load();
 
 
