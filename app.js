@@ -1,4 +1,4 @@
-/*global PIXI, requestAnimFrame*/
+/*global PIXI, requestAnimationFrame*/
 
 window.addEventListener('resize', function () {
   window.location.reload();
@@ -67,7 +67,7 @@ function onAssetsLoaded() {
 
 	// start animating
   before = Date.now();
-	requestAnimFrame(animate);
+	requestAnimationFrame(animate);
 }
 
 function explode(x, y, owner) {
@@ -109,7 +109,7 @@ function animate() {
     sparks[i].animate(i, delta);
   }
   renderer.render(stage);
-  requestAnimFrame(animate);
+  requestAnimationFrame(animate);
 }
 
 function animateSpark(index, delta) {
