@@ -1,14 +1,14 @@
 /*global PIXI, requestAnimationFrame*/
 
 window.addEventListener('resize', function () {
-  window.location.reload();
+  // window.location.reload();
 }, false);
 
 window.addEventListener('load', function () {
 
   window.applicationCache.addEventListener('updateready', function() {
     if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-        window.location.reload();
+        // window.location.reload();
     }
   }, false);
 
