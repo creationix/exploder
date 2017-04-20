@@ -1,0 +1,7 @@
+{
+  "title": "Exploder",
+  "description": "A fun little game where you try to bounce balls till they explode!",
+  "app": {
+    "name": "exploder"
+  }
+}
