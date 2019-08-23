@@ -3,14 +3,13 @@
   "name": "Exploder",
   "icons": [
     {
-      "src": "/icon-128.png",
+      "src": "exploder-icon.png",
       "type": "image/png",
-      "sizes": "128x128"
+      "sizes": "192x192"
     }
   ],
-  "start_url": "/index.html",
+  "start_url": "index.html",
   "background_color": "#3367D6",
   "display": "fullscreen",
-  "scope": "/",
   "theme_color": "#3367D6"
 }
