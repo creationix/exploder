@@ -1,21 +1,16 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Exploder</title>
-    <link rel="manifest" href="/manifest.json">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link href="style.css" rel="stylesheet" type="text/css">
-    <script>
-      if('serviceWorker' in navigator) {
-        navigator.serviceWorker
-          .register('/sw.js')
-          .then(() => console.log('Service Worker Registered'))
-      }
-    </script>
-  </head>
-  <body>
-    <script src="pixi.min.js"></script>
-    <script src="app.js"></script>
-  </body>
+
+<head>
+  <title>Exploder</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <script src="app.js" type="module"></script>
+</body>
+
 </html>
