@@ -10,6 +10,12 @@
 </head>
 
 <body>
+  <script type="module">
+    // Get rid of any old service workers
+    for (const registration of await navigator.serviceWorker.getRegistrations()) {
+      registration.unregister()
+    }
+  </script>
   <script src="app.js" type="module"></script>
 </body>
 
