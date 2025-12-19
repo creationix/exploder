@@ -1,0 +1,7 @@
+{
+  "name": "exploder",
+  "version": "1.0.0",
+  "dependencies": {
+    "@vercel/config": "^0.0.24"
+  }
+}
